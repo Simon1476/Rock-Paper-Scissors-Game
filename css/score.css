@@ -1,0 +1,14 @@
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  
+  padding-top: 50px;
+
+  font-family: 'Bangers', cursive;
+  font-size: 72px;
+  
+
+
+}

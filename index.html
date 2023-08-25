@@ -4,8 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
+    <h1>Rock Paper Scissors</h1>
+    <h2>Do you think you can beat a robot?</h2>
+
+    <section class="game">
+      <div class="user">
+        <div class="selected-btn">
+          <button class="btn question-btn">
+            <img src="./image/question-mark.png" alt="" />
+          </button>
+        </div>
+        <div class="btn-box">
+          <button class="rock-btn btn">
+            <img src="./image/rocks.png" alt="rock" />
+          </button>
+          <button class="paper-btn btn">
+            <img src="./image/paper.png" alt="paper" />
+          </button>
+          <button class="scissors-btn btn">
+            <img src="./image/scissor.png" alt="" />
+          </button>
+        </div>
+      </div>
+
+      <div class="computer">
+        <div class="selected-btn">
+          <button class="btn question-btn">
+            <img src="./image/question-mark.png" alt="" />
+          </button>
+        </div>
+        <div class="btn-box">
+          <button class="rock-btn btn">
+            <img src="./image/rocks.png" alt="rock" />
+          </button>
+          <button class="paper-btn btn">
+            <img src="./image/paper.png" alt="paper" />
+          </button>
+          <button class="scissors-btn btn">
+            <img src="./image/scissor.png" alt="" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="score">
+      <div class="score__player">
+        <span>Player</span>
+        <span>0</span> Point
+      </div>
+      <div class="score__round">
+        <span>Round</span>
+        <span>0</span>
+      </div>
+      <div class="score__computer">
+        <span>Computer</span>
+        <span>0</span>Point
+      </div>
+    </section>
     <script defer src="main.js"></script>
   </body>
 </html>
