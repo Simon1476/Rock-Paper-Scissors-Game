@@ -29,6 +29,33 @@ const scoreComputer = document.querySelector(
 );
 const scoreRound = document.querySelector(".score__round span:last-child");
 scoreRound.textContent = totalRound;
+
+const popUp = document.querySelector(".pop-up");
+const overlay = document.querySelector(".overlay");
+const restart = document.querySelector(".pop-up button");
+const popUpText = document.querySelector(".pop-up p");
+overlay.addEventListener("click", closePopUp);
+restart.addEventListener("click", restartGame);
+
+function closePopUp() {
+  popUp.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+function showPopUp() {
+  popUp.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function restartGame() {
+  totalRound = 5;
+  userCount = 0;
+  computerCount = 0;
+  closePopUp();
+  scorePlayer.textContent = userCount;
+  scoreComputer.textContent = computerCount;
+  scoreRound.textContent = totalRound;
+}
 function imageChange(playerSelection, computerSelection) {
   switch (playerSelection) {
     case "rock":
@@ -62,6 +89,11 @@ function getComputerChoice() {
 }
 
 function startGame(e) {
+  if (totalRound === 0) {
+    showPopUp();
+    return;
+  }
+
   Sound.playClick();
   playerSelection = e.target.alt;
   computerSelection = getComputerChoice();
@@ -87,6 +119,14 @@ function game() {
   imageChange(playerSelection, computerSelection);
   --totalRound;
   scoreRound.textContent = totalRound;
+  if (totalRound === 0) {
+    showPopUp();
+    if (userCount > computerCount) {
+      popUpText.textContent = "You Win!";
+    } else if (userCount < computerCount) {
+      popUpText.textContent = "You Lose!";
+    } else popUpText.textContent = "Draw!";
+  }
 
   let gameResult = playRound(playerSelection, computerSelection);
 
