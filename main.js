@@ -21,6 +21,12 @@ playerAllBtn.forEach((button) => {
   button.addEventListener("click", startGame);
 });
 
+const scorePlayer = document.querySelector(".score__player span:last-child");
+const scoreComputer = document.querySelector(
+  ".score__computer span:last-child"
+);
+const scoreRound = document.querySelector(".score__round span:last-child");
+scoreRound.textContent = totalRound;
 function imageChange(playerSelection, computerSelection) {
   switch (playerSelection) {
     case "rock":
@@ -71,18 +77,19 @@ function playRound(playerSelection, computerSelection) {
   else if (player === "scissors" && computer === "paper") gameResult = "player";
   else gameResult = "computer";
 
-  // return gameResult === "player"
-  //   ? `You Win! ${player} beats ${computer}`
-  //   : `Computer Win! ${computer} beats ${player}`;
   return gameResult;
 }
 
 function game() {
   imageChange(playerSelection, computerSelection);
   --totalRound;
+  scoreRound.textContent = totalRound;
+
   let gameResult = playRound(playerSelection, computerSelection);
+
   if (gameResult === "draw") return;
   gameResult === "player" ? ++userCount : ++computerCount;
-}
 
-console.log(`${totalRound} ${userCount} ${computerCount}`);
+  scorePlayer.textContent = userCount;
+  scoreComputer.textContent = computerCount;
+}
