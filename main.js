@@ -1,3 +1,5 @@
+import * as Sound from "./sound.js";
+
 let computerSelection = "";
 let playerSelection = "";
 
@@ -60,6 +62,7 @@ function getComputerChoice() {
 }
 
 function startGame(e) {
+  Sound.playClick();
   playerSelection = e.target.alt;
   computerSelection = getComputerChoice();
   if (playerSelection && computerSelection) game();
@@ -88,8 +91,14 @@ function game() {
   let gameResult = playRound(playerSelection, computerSelection);
 
   if (gameResult === "draw") return;
-  gameResult === "player" ? ++userCount : ++computerCount;
 
+  if (gameResult === "player") {
+    ++userCount;
+    Sound.playWin();
+  } else {
+    ++computerCount;
+    Sound.playLose();
+  }
   scorePlayer.textContent = userCount;
   scoreComputer.textContent = computerCount;
 }
