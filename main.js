@@ -45,13 +45,8 @@ function showPopUp() {
 }
 
 function restartGame() {
-  totalRound = 5;
-  userCount = 0;
-  computerCount = 0;
   closePopUp();
-  scorePlayer.textContent = userCount;
-  scoreComputer.textContent = computerCount;
-  scoreRound.textContent = totalRound;
+  resetGame();
 }
 function imageChange(playerSelection, computerSelection) {
   switch (playerSelection) {
@@ -118,36 +113,11 @@ function game() {
 
   let gameResult = playRound(playerSelection, computerSelection);
 
-  if (gameResult === "draw") {
-    --totalRound;
-    scoreRound.textContent = totalRound;
-    if (totalRound === 0) {
-      endGame();
-      showPopUp();
-    }
-    return;
-  } else if (gameResult === "player") {
-    ++userCount;
-    Sound.playWin();
-    --totalRound;
-    scoreRound.textContent = totalRound;
-    if (totalRound === 0) {
-      endGame();
-      showPopUp();
-    }
-  } else if (gameResult === "computer") {
-    ++computerCount;
-    Sound.playLose();
-    --totalRound;
-    scoreRound.textContent = totalRound;
-    if (totalRound === 0) {
-      endGame();
-      showPopUp();
-    }
+  updateGame(gameResult);
+  if (totalRound === 0) {
+    endGame();
+    showPopUp();
   }
-
-  scorePlayer.textContent = userCount;
-  scoreComputer.textContent = computerCount;
 }
 
 function endGame() {
@@ -164,4 +134,28 @@ function resetGame() {
   totalRound = 5;
   scorePlayer.textContent = userCount;
   scoreComputer.textContent = computerCount;
+  scoreRound.textContent = totalRound;
+}
+
+function updateGame(gameResult) {
+  if (gameResult === "draw") {
+    --totalRound;
+    scoreRound.textContent = totalRound;
+    if (totalRound === 0) {
+      endGame();
+      showPopUp();
+    }
+  } else if (gameResult === "player") {
+    ++userCount;
+    scorePlayer.textContent = userCount;
+    Sound.playWin();
+    --totalRound;
+    scoreRound.textContent = totalRound;
+  } else if (gameResult === "computer") {
+    ++computerCount;
+    scoreComputer.textContent = computerCount;
+    Sound.playLose();
+    --totalRound;
+    scoreRound.textContent = totalRound;
+  }
 }
