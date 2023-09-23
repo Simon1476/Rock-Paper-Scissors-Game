@@ -7,10 +7,6 @@ let totalRound = 5;
 let userCount = 0;
 let computerCount = 0;
 
-const rockBtn = document.querySelector(".rock-btn");
-const paperBtn = document.querySelector(".paperBtn-btn");
-const scissorsBtn = document.querySelector(".scissors-btn");
-
 const playerQuestionImg = document.querySelector(".user .question-btn img");
 const computerQuestionImg = document.querySelector(
   ".computer .question-btn img"
@@ -40,6 +36,7 @@ restart.addEventListener("click", restartGame);
 function closePopUp() {
   popUp.classList.remove("active");
   overlay.classList.remove("active");
+  resetGame();
 }
 
 function showPopUp() {
@@ -89,11 +86,6 @@ function getComputerChoice() {
 }
 
 function startGame(e) {
-  if (totalRound === 0) {
-    showPopUp();
-    return;
-  }
-
   Sound.playClick();
   playerSelection = e.target.alt;
   computerSelection = getComputerChoice();
@@ -117,28 +109,50 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
   imageChange(playerSelection, computerSelection);
-  --totalRound;
-  scoreRound.textContent = totalRound;
+
   if (totalRound === 0) {
+    endGame();
     showPopUp();
-    if (userCount > computerCount) {
-      popUpText.textContent = "You Win!";
-    } else if (userCount < computerCount) {
-      popUpText.textContent = "You Lose!";
-    } else popUpText.textContent = "Draw!";
   }
 
   let gameResult = playRound(playerSelection, computerSelection);
 
-  if (gameResult === "draw") return;
-
-  if (gameResult === "player") {
+  if (gameResult === "draw") {
+    --totalRound;
+    scoreRound.textContent = totalRound;
+    if (totalRound === 0) {
+      endGame();
+      showPopUp();
+    }
+    return;
+  } else if (gameResult === "player") {
     ++userCount;
     Sound.playWin();
-  } else {
+    --totalRound;
+    scoreRound.textContent = totalRound;
+    if (totalRound === 0) {
+      endGame();
+      showPopUp();
+    }
+  } else if (gameResult === "computer") {
     ++computerCount;
     Sound.playLose();
+    --totalRound;
+    scoreRound.textContent = totalRound;
+    if (totalRound === 0) {
+      endGame();
+      showPopUp();
+    }
   }
+
   scorePlayer.textContent = userCount;
   scoreComputer.textContent = computerCount;
+}
+
+function endGame() {
+  if (userCount > computerCount) {
+    popUpText.textContent = "You Win!";
+  } else if (userCount < computerCount) {
+    popUpText.textContent = "You Lose!";
+  } else if (userCount === computerCount) popUpText.textContent = "Draw!";
 }
