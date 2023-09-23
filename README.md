@@ -6,4 +6,6 @@
 * Players can choose what they want to play by clicking on one of the three images on the left.
 
 # Built with
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=Html5LogoColor&logoColor=white">
+* <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=Html5LogoColor&logoColor=white">
+* <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=Css3LogoColor&logoColor=white">
+* <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScriptLogoColor&logoColor=white">
