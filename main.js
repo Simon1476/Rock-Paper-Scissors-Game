@@ -90,6 +90,7 @@ function startGame(e) {
   playerSelection = e.target.alt;
   computerSelection = getComputerChoice();
   if (playerSelection && computerSelection) game();
+  console.log(userCount, computerCount);
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -155,4 +156,12 @@ function endGame() {
   } else if (userCount < computerCount) {
     popUpText.textContent = "You Lose!";
   } else if (userCount === computerCount) popUpText.textContent = "Draw!";
+}
+
+function resetGame() {
+  userCount = 0;
+  computerCount = 0;
+  totalRound = 5;
+  scorePlayer.textContent = userCount;
+  scoreComputer.textContent = computerCount;
 }
